@@ -1,0 +1,34 @@
+name: SkyTourApp
+options:
+  minimumXcodeGenVersion: 2.45.0
+settings:
+  base:
+    PRODUCT_BUNDLE_IDENTIFIER: com.skytour.mvp
+    SWIFT_VERSION: 6.0
+    IPHONEOS_DEPLOYMENT_TARGET: 17.0
+targets:
+  SkyTourApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: SkyTourApp
+    resources:
+      - path: SkyTourApp/Resources
+    info:
+      path: SkyTourApp/Info.plist
+      properties:
+        CFBundleDisplayName: SkyTour
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UILaunchScreen: {}
+        NSLocationWhenInUseUsageDescription: SkyTour uses your location to detect the nearest supported airport and accompany approved sightseeing routes.
+        NSLocationAlwaysAndWhenInUseUsageDescription: SkyTour uses your location to detect the nearest supported airport and accompany approved sightseeing routes.
+        ITSAppUsesNonExemptEncryption: false
+    settings:
+      base:
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: false
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    scheme:
+      testTargets: []
+

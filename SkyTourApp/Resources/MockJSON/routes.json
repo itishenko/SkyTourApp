@@ -1,0 +1,289 @@
+[
+  {
+    "id": "chisinau-overview",
+    "airportID": "lukk",
+    "packageID": "chisinau-overview-pack",
+    "title": "Кишинёв обзорный",
+    "summary": "Короткий sightseeing-маршрут с вводной панорамой города и ключевыми культурными ориентирами.",
+    "durationMinutes": 42,
+    "distanceKilometers": 124,
+    "downloadSizeMB": 24,
+    "contentLanguages": ["ro", "en"],
+    "previewSymbol": "building.columns.fill",
+    "polyline": [
+      {"latitude": 46.9280, "longitude": 28.9310},
+      {"latitude": 47.0000, "longitude": 28.9300},
+      {"latitude": 47.0400, "longitude": 28.8500},
+      {"latitude": 47.0100, "longitude": 28.7600},
+      {"latitude": 46.9500, "longitude": 28.7900}
+    ],
+    "poi": [
+      {
+        "id": "chi-panorama",
+        "routeID": "chisinau-overview",
+        "title": "Панорама Кишинёва",
+        "summary": "Первый обзорный POI после набора безопасной высоты.",
+        "detailedText": "С этой точки пассажиры получают широкий вид на городскую ткань Chișinău, зеленые массивы и основные магистрали. В аудиосценарии подается краткое введение в маршрут и контекст полета.",
+        "cueText": "Смотрите вперед и немного вправо",
+        "sideHint": "Город раскрывается по правому борту.",
+        "triggerRadiusMeters": 1200,
+        "coordinate": {"latitude": 47.0000, "longitude": 28.9300},
+        "mediaAssets": [
+          {"id": "chi-panorama-photo", "kind": "photo", "title": "City panorama", "caption": "Городская панорама", "localResourceName": null},
+          {"id": "chi-panorama-audio", "kind": "audio", "title": "Intro audio", "caption": "Вводное аудио", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 6
+      },
+      {
+        "id": "valeamorilor",
+        "routeID": "chisinau-overview",
+        "title": "Valea Morilor",
+        "summary": "Озеро и парковый ансамбль на подходе к юго-западной дуге.",
+        "detailedText": "POI показывает рекреационную часть города. Здесь хорошо работает подсказка про взгляд влево и короткий блок о зелёных зонах столицы.",
+        "cueText": "Посмотрите влево на водную чашу",
+        "sideHint": "Левый борт",
+        "triggerRadiusMeters": 900,
+        "coordinate": {"latitude": 47.0260, "longitude": 28.8110},
+        "mediaAssets": [
+          {"id": "valeamorilor-photo", "kind": "photo", "title": "Lake overview", "caption": "Озеро Valea Morilor", "localResourceName": null},
+          {"id": "valeamorilor-audio", "kind": "audio", "title": "Lake audio", "caption": "История места", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 14
+      },
+      {
+        "id": "milestii",
+        "routeID": "chisinau-overview",
+        "title": "Подземные винные галереи",
+        "summary": "Переход к историческому рассказу о молдавском винном регионе.",
+        "detailedText": "Этот блок служит мостом между городским обзором и культурным контентом. Пользователь получает текстовую заметку и аудио о знаменитых винных галереях и туристическом бренде региона.",
+        "cueText": "Смотрите прямо по курсу",
+        "sideHint": "Фокус в сторону южного сектора.",
+        "triggerRadiusMeters": 1000,
+        "coordinate": {"latitude": 46.9160, "longitude": 28.8220},
+        "mediaAssets": [
+          {"id": "milestii-photo", "kind": "photo", "title": "Wine heritage", "caption": "Винные галереи", "localResourceName": null},
+          {"id": "milestii-audio", "kind": "audio", "title": "Wine audio", "caption": "Короткий гид", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 24
+      },
+      {
+        "id": "return-lukk",
+        "routeID": "chisinau-overview",
+        "title": "Возврат к LUKK",
+        "summary": "Финальная точка с напоминанием про завершение сегмента.",
+        "detailedText": "Последняя точка дает финальный рассказ и просит пользователя переключиться к следующему этапу маршрута или завершить сценарий.",
+        "cueText": "Маршрут завершается, держите внимание на официальной навигации",
+        "sideHint": "Финальный сегмент",
+        "triggerRadiusMeters": 800,
+        "coordinate": {"latitude": 46.9500, "longitude": 28.7900},
+        "mediaAssets": [
+          {"id": "return-photo", "kind": "photo", "title": "Return segment", "caption": "Финальный сегмент", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 36
+      }
+    ]
+  },
+  {
+    "id": "old-orhei-loop",
+    "airportID": "lukk",
+    "packageID": "chisinau-overview-pack",
+    "title": "Старый Орхей — кольцо",
+    "summary": "Маршрут с акцентом на исторический ландшафт и монастырские комплексы в долине Реута.",
+    "durationMinutes": 38,
+    "distanceKilometers": 98,
+    "downloadSizeMB": 19,
+    "contentLanguages": ["ro", "en"],
+    "previewSymbol": "mountain.2.fill",
+    "polyline": [
+      {"latitude": 46.9280, "longitude": 28.9310},
+      {"latitude": 47.2300, "longitude": 28.9800},
+      {"latitude": 47.2950, "longitude": 28.9750},
+      {"latitude": 47.2450, "longitude": 28.8600}
+    ],
+    "poi": [
+      {
+        "id": "orhei-river",
+        "routeID": "old-orhei-loop",
+        "title": "Излучина Реута",
+        "summary": "Подход к природному изгибу реки и обзор древнего поселения.",
+        "detailedText": "Здесь пользователь получает первое знакомство с топографией Old Orhei и объяснение, почему маршрут подается как scenic ring, а не навигационный guidance.",
+        "cueText": "Смотрите влево на долину",
+        "sideHint": "Левый борт",
+        "triggerRadiusMeters": 1000,
+        "coordinate": {"latitude": 47.2300, "longitude": 28.9800},
+        "mediaAssets": [
+          {"id": "orhei-river-photo", "kind": "photo", "title": "River bend", "caption": "Долина Реута", "localResourceName": null},
+          {"id": "orhei-river-audio", "kind": "audio", "title": "Valley audio", "caption": "История ландшафта", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 16
+      },
+      {
+        "id": "orhei-monastery",
+        "routeID": "old-orhei-loop",
+        "title": "Скальный монастырь",
+        "summary": "Ключевая культурная точка маршрута.",
+        "detailedText": "POI рассказывает про монастырский комплекс и аккуратно подчеркивает, что все решения по маневрированию остаются у пилота.",
+        "cueText": "Смотрите вправо на скальные террасы",
+        "sideHint": "Правый борт",
+        "triggerRadiusMeters": 900,
+        "coordinate": {"latitude": 47.2950, "longitude": 28.9750},
+        "mediaAssets": [
+          {"id": "orhei-monastery-photo", "kind": "photo", "title": "Monastery", "caption": "Скальный монастырь", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 24
+      }
+    ]
+  },
+  {
+    "id": "north-fortresses",
+    "airportID": "lukk",
+    "packageID": "north-fortresses-pack",
+    "title": "Северные крепости и монастыри",
+    "summary": "Длинный маршрут с несколькими историческими POI и более насыщенной narrative-подачей.",
+    "durationMinutes": 85,
+    "distanceKilometers": 214,
+    "downloadSizeMB": 38,
+    "contentLanguages": ["ro", "en"],
+    "previewSymbol": "building.columns.circle.fill",
+    "polyline": [
+      {"latitude": 46.9280, "longitude": 28.9310},
+      {"latitude": 47.5100, "longitude": 28.8000},
+      {"latitude": 48.0300, "longitude": 27.8200},
+      {"latitude": 48.1500, "longitude": 28.3000}
+    ],
+    "poi": [
+      {
+        "id": "soroca-fortress",
+        "routeID": "north-fortresses",
+        "title": "Сорокская крепость",
+        "summary": "Главная историческая доминанта северного направления.",
+        "detailedText": "Контент объясняет роль крепости и почему эта точка особенно важна для пассажирского storytelling. В UI можно показать более насыщенный текстовый блок и медиа-карточку.",
+        "cueText": "Смотрите вправо на крепость у Днестра",
+        "sideHint": "Правый борт",
+        "triggerRadiusMeters": 1400,
+        "coordinate": {"latitude": 48.1550, "longitude": 28.3000},
+        "mediaAssets": [
+          {"id": "soroca-photo", "kind": "photo", "title": "Soroca Fortress", "caption": "Крепость у Днестра", "localResourceName": null},
+          {"id": "soroca-audio", "kind": "audio", "title": "Soroca audio", "caption": "Исторический блок", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 54
+      },
+      {
+        "id": "rupestri-north",
+        "routeID": "north-fortresses",
+        "title": "Северные монастыри",
+        "summary": "Финальный блок северного маршрута.",
+        "detailedText": "Контент остается экскурсионным: приложение дает контекст и визуальные ориентиры для пассажиров, но не подменяет navigation workflow.",
+        "cueText": "Смотрите влево на холмистый рельеф",
+        "sideHint": "Левый борт",
+        "triggerRadiusMeters": 1100,
+        "coordinate": {"latitude": 48.0300, "longitude": 27.8200},
+        "mediaAssets": [
+          {"id": "rupestri-photo", "kind": "photo", "title": "Northern monasteries", "caption": "Северный кластер", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 67
+      }
+    ]
+  },
+  {
+    "id": "codrii-forest",
+    "airportID": "lukk",
+    "packageID": "north-fortresses-pack",
+    "title": "Лес Кодры",
+    "summary": "Зеленый scenic-маршрут с природным фокусом и короткими текстовыми подсказками.",
+    "durationMinutes": 50,
+    "distanceKilometers": 132,
+    "downloadSizeMB": 27,
+    "contentLanguages": ["ro", "en"],
+    "previewSymbol": "tree.fill",
+    "polyline": [
+      {"latitude": 46.9280, "longitude": 28.9310},
+      {"latitude": 47.0600, "longitude": 28.5200},
+      {"latitude": 46.9600, "longitude": 28.4100},
+      {"latitude": 46.8900, "longitude": 28.6800}
+    ],
+    "poi": [
+      {
+        "id": "codrii-greenbelt",
+        "routeID": "codrii-forest",
+        "title": "Зеленый массив Кодры",
+        "summary": "Природный POI для мягкого аудио-сопровождения.",
+        "detailedText": "Хороший пример спокойного scenic-повествования без перегрузки интерфейса. Здесь можно держать более короткий текст и акцент на фото.",
+        "cueText": "Смотрите прямо вниз на лесной массив",
+        "sideHint": "Центральный сектор",
+        "triggerRadiusMeters": 950,
+        "coordinate": {"latitude": 47.0100, "longitude": 28.4700},
+        "mediaAssets": [
+          {"id": "codrii-photo", "kind": "photo", "title": "Forest texture", "caption": "Лес Кодры", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 18
+      },
+      {
+        "id": "codrii-reserve",
+        "routeID": "codrii-forest",
+        "title": "Природный резерват",
+        "summary": "Завершающий природный POI.",
+        "detailedText": "Финальный блок маршрута связывает природную тематику с темой бережного туризма и офлайн-подготовки перед полетом.",
+        "cueText": "Смотрите вправо",
+        "sideHint": "Правый борт",
+        "triggerRadiusMeters": 900,
+        "coordinate": {"latitude": 46.9300, "longitude": 28.5800},
+        "mediaAssets": [
+          {"id": "codrii-reserve-audio", "kind": "audio", "title": "Reserve audio", "caption": "Природный комментарий", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 31
+      }
+    ]
+  },
+  {
+    "id": "dniester-river",
+    "airportID": "lukk",
+    "packageID": "north-fortresses-pack",
+    "title": "Река Днестр",
+    "summary": "Маршрут вдоль воды с акцентом на панорамы и мягкое аудио-сопровождение.",
+    "durationMinutes": 55,
+    "distanceKilometers": 145,
+    "downloadSizeMB": 31,
+    "contentLanguages": ["ro", "en"],
+    "previewSymbol": "water.waves",
+    "polyline": [
+      {"latitude": 46.9280, "longitude": 28.9310},
+      {"latitude": 47.2500, "longitude": 29.1300},
+      {"latitude": 47.4800, "longitude": 29.1400},
+      {"latitude": 47.3000, "longitude": 28.9900}
+    ],
+    "poi": [
+      {
+        "id": "dniester-bend",
+        "routeID": "dniester-river",
+        "title": "Изгиб Днестра",
+        "summary": "Панорамная точка вдоль водной дуги.",
+        "detailedText": "Контент работает как короткий scenic commentary с визуальной подсказкой. В дальнейшем сюда хорошо ляжет реальный Mapbox annotation и heading-aware trigger logic.",
+        "cueText": "Смотрите влево на линию воды",
+        "sideHint": "Левый борт",
+        "triggerRadiusMeters": 1000,
+        "coordinate": {"latitude": 47.2500, "longitude": 29.1300},
+        "mediaAssets": [
+          {"id": "dniester-photo", "kind": "photo", "title": "River view", "caption": "Изгиб Днестра", "localResourceName": null},
+          {"id": "dniester-audio", "kind": "audio", "title": "River audio", "caption": "Рассказ о водной линии", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 20
+      },
+      {
+        "id": "dniester-villages",
+        "routeID": "dniester-river",
+        "title": "Прибрежные села",
+        "summary": "Короткий блок о сельских ландшафтах и реке.",
+        "detailedText": "Завершает маршрут заметкой о малых поселениях и формирует мягкий переход к следующей фазе flight session.",
+        "cueText": "Смотрите вправо на террасы",
+        "sideHint": "Правый борт",
+        "triggerRadiusMeters": 800,
+        "coordinate": {"latitude": 47.4200, "longitude": 29.1200},
+        "mediaAssets": [
+          {"id": "villages-photo", "kind": "photo", "title": "River villages", "caption": "Прибрежные села", "localResourceName": null}
+        ],
+        "estimatedMinutesFromStart": 34
+      }
+    ]
+  }
+]

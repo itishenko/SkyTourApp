@@ -1,0 +1,24 @@
+[
+  {
+    "id": "lukk",
+    "countryCode": "MD",
+    "code": "LUKK",
+    "name": "Кишинёв Межд.",
+    "city": "Chișinău",
+    "latitude": 46.928,
+    "longitude": 28.931,
+    "isSupported": true,
+    "routeIDs": [
+      "chisinau-overview",
+      "old-orhei-loop",
+      "north-fortresses",
+      "codrii-forest",
+      "dniester-river"
+    ],
+    "routePackageIDs": [
+      "chisinau-overview-pack",
+      "north-fortresses-pack"
+    ]
+  }
+]
+

@@ -1,0 +1,48 @@
+[
+  {
+    "id": "chisinau-overview-pack",
+    "airportID": "lukk",
+    "title": "Кишинёв — обзорный пакет",
+    "summary": "Базовый офлайн-набор для обзорных маршрутов вокруг Chișinău и Старого Орхея.",
+    "routeIDs": ["chisinau-overview", "old-orhei-loop"],
+    "poiCount": 6,
+    "sizeMB": 36,
+    "languages": ["ro", "en"],
+    "version": "1.0.0",
+    "updatedAt": "2026-06-20T09:00:00Z",
+    "manifest": {
+      "schemaVersion": "1.0",
+      "requiredFiles": ["routes.json", "poi.json", "photos/", "audio/", "tiles.mbtiles", "manifest.json"],
+      "checksums": {
+        "routes.json": "demo-routes-001",
+        "poi.json": "demo-poi-001",
+        "tiles.mbtiles": "demo-map-001"
+      },
+      "mapRegionID": "md-lukk-core",
+      "includesOfflineMap": true
+    }
+  },
+  {
+    "id": "north-fortresses-pack",
+    "airportID": "lukk",
+    "title": "Северные крепости и монастыри",
+    "summary": "Расширенный пакет для северных достопримечательностей, крепостей и зеленых зон.",
+    "routeIDs": ["north-fortresses", "codrii-forest", "dniester-river"],
+    "poiCount": 9,
+    "sizeMB": 58,
+    "languages": ["ro", "en"],
+    "version": "1.1.0",
+    "updatedAt": "2026-06-18T09:00:00Z",
+    "manifest": {
+      "schemaVersion": "1.0",
+      "requiredFiles": ["routes.json", "poi.json", "photos/", "audio/", "manifest.json"],
+      "checksums": {
+        "routes.json": "demo-routes-002",
+        "poi.json": "demo-poi-002"
+      },
+      "mapRegionID": null,
+      "includesOfflineMap": false
+    }
+  }
+]
+
