@@ -13,11 +13,18 @@ enum BundleJSONLoaderError: LocalizedError {
 
 struct BundleJSONLoader {
     func load<T: Decodable>(_ filename: String, as type: T.Type) throws -> T {
-        guard let url = Bundle.main.url(
-            forResource: filename,
-            withExtension: "json",
-            subdirectory: "MockJSON"
-        ) else {
+        let bundledURL =
+            Bundle.main.url(
+                forResource: filename,
+                withExtension: "json",
+                subdirectory: "MockJSON"
+            )
+            ?? Bundle.main.url(
+                forResource: filename,
+                withExtension: "json"
+            )
+
+        guard let url = bundledURL else {
             throw BundleJSONLoaderError.fileNotFound(filename)
         }
 
@@ -27,4 +34,3 @@ struct BundleJSONLoader {
         return try decoder.decode(T.self, from: data)
     }
 }
-
