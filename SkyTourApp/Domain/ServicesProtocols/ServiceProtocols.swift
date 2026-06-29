@@ -13,12 +13,20 @@ protocol LocationService {
     func requestWhenInUseAuthorization() async -> LocationPermissionState
     func denyAuthorization() async -> LocationPermissionState
     func currentLocation() async -> CoordinatePoint?
+    func locationUpdates() -> AsyncStream<CoordinatePoint?>
+    func startUpdatingLocation()
+    func stopUpdatingLocation()
     func openSystemSettings()
 }
 
 @MainActor
 protocol MapService {
-    func renderSnapshot(route: Route?, activePOI: POI?, gpsStatus: GPSStatus) -> MapRenderSnapshot
+    func renderSnapshot(
+        route: Route?,
+        activePOI: POI?,
+        currentLocation: CoordinatePoint?,
+        gpsStatus: GPSStatus
+    ) -> MapRenderSnapshot
 }
 
 @MainActor

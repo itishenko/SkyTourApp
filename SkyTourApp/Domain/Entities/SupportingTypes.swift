@@ -129,11 +129,24 @@ struct OfflineAvailabilityReport: Hashable, Codable {
     let mapStatus: OfflineMapStatus
 }
 
+struct MapPOISnapshot: Identifiable, Hashable {
+    let id: String
+    let title: String
+    let coordinate: CoordinatePoint
+    let isActive: Bool
+}
+
 struct MapRenderSnapshot: Hashable {
     let title: String
     let subtitle: String
     let visiblePOICount: Int
     let mapStatus: OfflineMapStatus
+    let isMapConfigured: Bool
+    let routeCoordinates: [CoordinatePoint]
+    let pointsOfInterest: [MapPOISnapshot]
+    let currentLocation: CoordinatePoint?
+    let focusCoordinate: CoordinatePoint?
+    let warningMessage: String?
 }
 
 struct AppSettings: Codable, Hashable {
@@ -150,4 +163,3 @@ struct NearestAirportMatch: Hashable {
     let distanceKilometers: Double
     let isSupported: Bool
 }
-

@@ -26,6 +26,12 @@ xcuserdata/
 build/
 DerivedData/
 .derivedData/
+.derivedData-local/
+.home/
+.spm-cache/
+.spm-clones/
+.swift-module-cache/
+.verification/
 
 # Obj-C/Swift specific
 *.hmap

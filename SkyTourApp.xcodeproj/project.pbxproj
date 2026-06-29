@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		07E85C37E9AB334715804A49 /* OfflineServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5BA40511C9E63B9BBAC9D9 /* OfflineServices.swift */; };
 		225171EACA6DEB50303BFEA0 /* PreflightChecklistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87939A7B0ADF0121D44C7760 /* PreflightChecklistView.swift */; };
+		26D3B9732E33D0C74748E18D /* MapboxFlightMapCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD7A70E67D16DDE69B22B1 /* MapboxFlightMapCanvasView.swift */; };
 		2D227FDDCD42E06B09D5D294 /* AirportSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE307D0E03E4917DA590D14F /* AirportSelectionView.swift */; };
 		3153A19155AC140AF4DD4AC9 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355BD104884F9FD0B649A713 /* Route.swift */; };
 		3268DE99857DD0C579767809 /* LocationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8640E086A5CA19D6BC6715D /* LocationPermissionView.swift */; };
 		32C7967EF58B86D936248F57 /* RepositoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43327577BDFEB681DF52699D /* RepositoryProtocols.swift */; };
+		3F0682E58E0B6C6206D89785 /* MapboxMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5770D23FCC0F54A74BC3049 /* MapboxMapService.swift */; };
 		525CB9AF77CD6A48CB97FCA6 /* PackageDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1D90B19AA4C0B4362EBD30 /* PackageDetailsView.swift */; };
 		52E5DA6A1EC97D120E7A0396 /* FlightMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54664F2E7C8CBFAC6D4DF6C0 /* FlightMapView.swift */; };
 		5534ED74E598E894AF54D42A /* FlightSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CFDF5A20CD8909161DFDAA /* FlightSession.swift */; };
@@ -30,12 +32,12 @@
 		9401919CFAA39B1902D0F80D /* BundleJSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB6CD57B3D2E734FEE31C01 /* BundleJSONLoader.swift */; };
 		9AC542FF290C244CA3D28557 /* airports.json in Resources */ = {isa = PBXBuildFile; fileRef = 78A955C0BF3137889A2017E1 /* airports.json */; };
 		A088C97B481CCC4E57F0FD9F /* PackageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FAF69176C532387F006260 /* PackageListView.swift */; };
-		A7B38B2564538BA8F817FC33 /* PlaceholderMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CB89F6910359A8DB7CBCFB /* PlaceholderMapService.swift */; };
 		B2343DA6598F7142FB4DF43A /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5ACABF6DD1728254C8FE8E /* Country.swift */; };
 		B58EC9C3F3D117183D7FFBFD /* PointDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BB3C93ACC662C5CB2C21EB /* PointDetailsView.swift */; };
 		BCFD5298B5F1799ECE1BB001 /* LegalDisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81DBC23E97DB5AC44187AF4 /* LegalDisclaimerView.swift */; };
 		C11AAE28EFAABEA0476CD9CC /* MockPackageDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4B05227EB58BF1A25D0BA1 /* MockPackageDownloadService.swift */; };
 		C2BEC994397B5363DF658C52 /* OfflineManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EF674E227774E430ECA56F /* OfflineManagerView.swift */; };
+		C413BEFA7B845ED308FFF77F /* CoreLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136E0A2185CB85709DBDB92 /* CoreLocationService.swift */; };
 		C45E7A4674BFAD54351391D9 /* UseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58AE7832DA566C58888E71 /* UseCases.swift */; };
 		C7E21108005C9FBC1F84B215 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 9108A65AB97AB277549A4FBD /* countries.json */; };
 		D0E15ECFF460FB3C504B7009 /* SkyTourApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16B49E274DF46FA821E6482 /* SkyTourApp.swift */; };
@@ -44,6 +46,7 @@
 		E2317D01EB8D2A568BCD1D3F /* RoutePackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037D7F34153E9C00A295E8A6 /* RoutePackage.swift */; };
 		E30FDAA9E4F5AD38ACAB9C65 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D587321DC13CDC4098BE672D /* RootView.swift */; };
 		E4258738E51C18DD1761EDF7 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CEE5B4AE19412FB9F838F3 /* AppRouter.swift */; };
+		E72BC73DEFAA8A5004B62A00 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 3B92A3EC82048FAB0F8E4FE3 /* MapboxMaps */; };
 		E90530CB7DD497A2963DD148 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DEE15DEEB9C10EC9CE60E9 /* OnboardingView.swift */; };
 		F1676E5B3F88F909FE4CB466 /* MockAudioGuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E640AD9416F127173F591745 /* MockAudioGuideService.swift */; };
 		F55646BC999C31121D8655E4 /* routes.json in Resources */ = {isa = PBXBuildFile; fileRef = A289B0400A2B10804FB5F577 /* routes.json */; };
@@ -62,6 +65,7 @@
 		3DB6CD57B3D2E734FEE31C01 /* BundleJSONLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleJSONLoader.swift; sourceTree = "<group>"; };
 		43327577BDFEB681DF52699D /* RepositoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocols.swift; sourceTree = "<group>"; };
 		54664F2E7C8CBFAC6D4DF6C0 /* FlightMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapView.swift; sourceTree = "<group>"; };
+		5ADD7A70E67D16DDE69B22B1 /* MapboxFlightMapCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxFlightMapCanvasView.swift; sourceTree = "<group>"; };
 		601A733CC7D2AA9434EFDCEC /* RouteDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailsView.swift; sourceTree = "<group>"; };
 		60CFDF5A20CD8909161DFDAA /* FlightSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSession.swift; sourceTree = "<group>"; };
 		712F5FE44D6864917B4BA439 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -72,10 +76,11 @@
 		9108A65AB97AB277549A4FBD /* countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		98EF674E227774E430ECA56F /* OfflineManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineManagerView.swift; sourceTree = "<group>"; };
 		A289B0400A2B10804FB5F577 /* routes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = routes.json; sourceTree = "<group>"; };
-		A5CB89F6910359A8DB7CBCFB /* PlaceholderMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderMapService.swift; sourceTree = "<group>"; };
 		A6EF29DEBBF1E625546EEB0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A8FAF69176C532387F006260 /* PackageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageListView.swift; sourceTree = "<group>"; };
+		B136E0A2185CB85709DBDB92 /* CoreLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationService.swift; sourceTree = "<group>"; };
 		B16B49E274DF46FA821E6482 /* SkyTourApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyTourApp.swift; sourceTree = "<group>"; };
+		B5770D23FCC0F54A74BC3049 /* MapboxMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapboxMapService.swift; sourceTree = "<group>"; };
 		B6BB3C93ACC662C5CB2C21EB /* PointDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointDetailsView.swift; sourceTree = "<group>"; };
 		C2DEE15DEEB9C10EC9CE60E9 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C7C1A97997F5A5473CBE10F9 /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
@@ -93,8 +98,19 @@
 		FB1D90B19AA4C0B4362EBD30 /* PackageDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageDetailsView.swift; sourceTree = "<group>"; };
 		FB5BA40511C9E63B9BBAC9D9 /* OfflineServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineServices.swift; sourceTree = "<group>"; };
 		FBA1B22A2E1A6D3FA0FBF741 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		FE0033B26C0354D14DA91885 /* SkyTourApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SkyTourApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE0033B26C0354D14DA91885 /* SkyTourApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyTourApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		662474D692DD64C92910F9E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E72BC73DEFAA8A5004B62A00 /* MapboxMaps in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		1C89B0F98391C289C4415640 = {
@@ -229,6 +245,7 @@
 		7DC70AF0E7F121301DAE8BAB /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				B136E0A2185CB85709DBDB92 /* CoreLocationService.swift */,
 				CF66D26D318D4D8B48E200EE /* MockLocationService.swift */,
 			);
 			path = Location;
@@ -334,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				54664F2E7C8CBFAC6D4DF6C0 /* FlightMapView.swift */,
+				5ADD7A70E67D16DDE69B22B1 /* MapboxFlightMapCanvasView.swift */,
 			);
 			path = FlightMap;
 			sourceTree = "<group>";
@@ -404,7 +422,7 @@
 		F3A90F0DC2C8F80AAFE3E448 /* Mapbox */ = {
 			isa = PBXGroup;
 			children = (
-				A5CB89F6910359A8DB7CBCFB /* PlaceholderMapService.swift */,
+				B5770D23FCC0F54A74BC3049 /* MapboxMapService.swift */,
 			);
 			path = Mapbox;
 			sourceTree = "<group>";
@@ -435,6 +453,7 @@
 			buildPhases = (
 				5D1C3E0013220DB0ACC14A68 /* Sources */,
 				4D31C174372D8FC0F02ED4E6 /* Resources */,
+				662474D692DD64C92910F9E1 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -442,6 +461,7 @@
 			);
 			name = SkyTourApp;
 			packageProductDependencies = (
+				3B92A3EC82048FAB0F8E4FE3 /* MapboxMaps */,
 			);
 			productName = SkyTourApp;
 			productReference = FE0033B26C0354D14DA91885 /* SkyTourApp.app */;
@@ -455,8 +475,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = B21623F0E71F2E5F819CF223 /* Build configuration list for PBXProject "SkyTourApp" */;
 			developmentRegion = en;
@@ -467,6 +485,9 @@
 			);
 			mainGroup = 1C89B0F98391C289C4415640;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2D506E9FC03B14233D0A8092 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 472520EAF5A2D1C246E9C34C /* Products */;
 			projectDirPath = "";
@@ -501,6 +522,7 @@
 				E4258738E51C18DD1761EDF7 /* AppRouter.swift in Sources */,
 				7A6F5001C6A9B87B9D9A2E4F /* AppState.swift in Sources */,
 				9401919CFAA39B1902D0F80D /* BundleJSONLoader.swift in Sources */,
+				C413BEFA7B845ED308FFF77F /* CoreLocationService.swift in Sources */,
 				B2343DA6598F7142FB4DF43A /* Country.swift in Sources */,
 				D6F9A91A6F69A6B480994094 /* DependencyContainer.swift in Sources */,
 				52E5DA6A1EC97D120E7A0396 /* FlightMapView.swift in Sources */,
@@ -509,6 +531,8 @@
 				88EDDD01961EB6DB630A149F /* HomeView.swift in Sources */,
 				BCFD5298B5F1799ECE1BB001 /* LegalDisclaimerView.swift in Sources */,
 				3268DE99857DD0C579767809 /* LocationPermissionView.swift in Sources */,
+				26D3B9732E33D0C74748E18D /* MapboxFlightMapCanvasView.swift in Sources */,
+				3F0682E58E0B6C6206D89785 /* MapboxMapService.swift in Sources */,
 				F1676E5B3F88F909FE4CB466 /* MockAudioGuideService.swift in Sources */,
 				68F89043C832B2D796D196B1 /* MockLocationService.swift in Sources */,
 				C11AAE28EFAABEA0476CD9CC /* MockPackageDownloadService.swift in Sources */,
@@ -517,7 +541,6 @@
 				E90530CB7DD497A2963DD148 /* OnboardingView.swift in Sources */,
 				525CB9AF77CD6A48CB97FCA6 /* PackageDetailsView.swift in Sources */,
 				A088C97B481CCC4E57F0FD9F /* PackageListView.swift in Sources */,
-				A7B38B2564538BA8F817FC33 /* PlaceholderMapService.swift in Sources */,
 				B58EC9C3F3D117183D7FFBFD /* PointDetailsView.swift in Sources */,
 				225171EACA6DEB50303BFEA0 /* PreflightChecklistView.swift in Sources */,
 				56FA96DFFD8537E59B7E3445 /* Repositories.swift in Sources */,
@@ -591,6 +614,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MAPBOX_ACCESS_TOKEN = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -615,6 +639,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MAPBOX_ACCESS_TOKEN = pk.eyJ1IjoiaXRpc2hlbmtvIiwiYSI6ImNtbmE4cDdybjBkaWQycXBqN2h0bnp4cDUifQ.rIfTso4zELKE_A1xJBNKCg;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -632,6 +657,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MAPBOX_ACCESS_TOKEN = pk.eyJ1IjoiaXRpc2hlbmtvIiwiYSI6ImNtbmE4cDdybjBkaWQycXBqN2h0bnp4cDUifQ.rIfTso4zELKE_A1xJBNKCg;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -683,6 +709,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MAPBOX_ACCESS_TOKEN = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.skytour.mvp;
@@ -716,6 +743,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2D506E9FC03B14233D0A8092 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.25.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3B92A3EC82048FAB0F8E4FE3 /* MapboxMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D506E9FC03B14233D0A8092 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AA95EFEA546ACB6538A31134 /* Project object */;
 }

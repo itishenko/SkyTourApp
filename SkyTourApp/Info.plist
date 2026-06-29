@@ -22,6 +22,8 @@
 	<string>1</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>MBXAccessToken</key>
+	<string>$(MAPBOX_ACCESS_TOKEN)</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>SkyTour uses your location to detect the nearest supported airport and accompany approved sightseeing routes.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

@@ -1,8 +1,13 @@
 name: SkyTourApp
 options:
   minimumXcodeGenVersion: 2.45.0
+packages:
+  MapboxMaps:
+    url: https://github.com/mapbox/mapbox-maps-ios.git
+    from: 11.25.0
 settings:
   base:
+    MAPBOX_ACCESS_TOKEN: ""
     PRODUCT_BUNDLE_IDENTIFIER: com.skytour.mvp
     SWIFT_VERSION: 6.0
     IPHONEOS_DEPLOYMENT_TARGET: 17.0
@@ -18,12 +23,16 @@ targets:
       path: SkyTourApp/Info.plist
       properties:
         CFBundleDisplayName: SkyTour
+        MBXAccessToken: $(MAPBOX_ACCESS_TOKEN)
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         UILaunchScreen: {}
         NSLocationWhenInUseUsageDescription: SkyTour uses your location to detect the nearest supported airport and accompany approved sightseeing routes.
         NSLocationAlwaysAndWhenInUseUsageDescription: SkyTour uses your location to detect the nearest supported airport and accompany approved sightseeing routes.
         ITSAppUsesNonExemptEncryption: false
+    dependencies:
+      - package: MapboxMaps
+        product: MapboxMaps
     settings:
       base:
         TARGETED_DEVICE_FAMILY: "1,2"
@@ -31,4 +40,3 @@ targets:
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
     scheme:
       testTargets: []
-

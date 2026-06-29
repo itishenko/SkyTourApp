@@ -25,14 +25,22 @@ struct FlightMapView: View {
                         MetricPill(value: appState.gpsStatus.title, title: "gps")
                         MetricPill(value: snapshot.mapStatus.title, title: "map")
                     }
-                    if let route {
-                        RoutePolylinePreview(route: route)
+                    if snapshot.isMapConfigured {
+                        MapboxFlightMapCanvasView(snapshot: snapshot)
+                            .frame(height: 320)
+                            .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                     } else {
                         PlaceholderIllustrationCard(
-                            title: "Mapbox container",
-                            subtitle: "Сейчас это placeholder abstraction. Реальный SDK подключается следующим этапом через MapService.",
+                            title: "Mapbox не настроен",
+                            subtitle: snapshot.warningMessage ?? "Добавьте публичный токен в MBXAccessToken / MAPBOX_ACCESS_TOKEN, и экран покажет живую карту.",
                             symbol: "map.fill"
                         )
+                    }
+
+                    if let warningMessage = snapshot.warningMessage {
+                        Text(warningMessage)
+                            .font(.footnote)
+                            .foregroundStyle(SkyTourTheme.textSecondary)
                     }
                 }
             }

@@ -34,11 +34,18 @@ final class AppState: ObservableObject {
     @Published var activePOI: POI?
     @Published var manualAirportSelectionRequested = false
     @Published var lastErrorMessage: String?
+    @Published var currentLocation: CoordinatePoint?
 
     let container: DependencyContainer
+    private var locationUpdatesTask: Task<Void, Never>?
 
     init(container: DependencyContainer) {
         self.container = container
+        observeLocationUpdates()
+    }
+
+    deinit {
+        locationUpdatesTask?.cancel()
     }
 
     var launchStage: LaunchStage {
@@ -84,7 +91,13 @@ final class AppState: ObservableObject {
             self.contentLanguage = settings.contentLanguage
             self.autoplayAudio = settings.autoplayAudio
             self.locationPermissionState = permissionState
-            self.gpsStatus = permissionState.isAuthorized ? .active : .limited
+
+            if permissionState.isAuthorized {
+                container.locationService.startUpdatingLocation()
+                self.currentLocation = await container.locationService.currentLocation()
+            }
+
+            refreshGPSStatus()
             self.selectedCountry = loadedCountries.first(where: { $0.code == settings.selectedCountryCode }) ?? loadedCountries.first
             self.selectedAirport = loadedAirports.first(where: { $0.id == settings.selectedAirportID })
 
@@ -117,14 +130,20 @@ final class AppState: ObservableObject {
 
     func requestLocationAccess() async {
         locationPermissionState = await container.locationService.requestWhenInUseAuthorization()
-        gpsStatus = locationPermissionState.isAuthorized ? .active : .limited
+        if locationPermissionState.isAuthorized {
+            container.locationService.startUpdatingLocation()
+            currentLocation = await container.locationService.currentLocation()
+        }
+        refreshGPSStatus()
         nearestAirportMatch = await container.detectNearestAirportUseCase.execute(airports: airports)
         autoSelectAirportIfNeeded()
     }
 
     func denyLocationAccess() async {
         locationPermissionState = await container.locationService.denyAuthorization()
-        gpsStatus = .unavailable
+        currentLocation = nil
+        container.locationService.stopUpdatingLocation()
+        refreshGPSStatus()
         autoSelectAirportIfNeeded()
     }
 
@@ -270,7 +289,12 @@ final class AppState: ObservableObject {
     }
 
     func mapSnapshot(for route: Route?) -> MapRenderSnapshot {
-        container.mapService.renderSnapshot(route: route, activePOI: activePOI, gpsStatus: gpsStatus)
+        container.mapService.renderSnapshot(
+            route: route,
+            activePOI: activePOI,
+            currentLocation: currentLocation,
+            gpsStatus: gpsStatus
+        )
     }
 
     func updateContentLanguage(_ language: ContentLanguage) {
@@ -311,6 +335,39 @@ final class AppState: ObservableObject {
         )
         Task {
             await container.settingsService.saveSettings(settings)
+        }
+    }
+
+    private func observeLocationUpdates() {
+        guard locationUpdatesTask == nil else { return }
+
+        locationUpdatesTask = Task { [weak self] in
+            guard let self else { return }
+
+            for await location in self.container.locationService.locationUpdates() {
+                guard !Task.isCancelled else { return }
+
+                self.currentLocation = location
+                self.refreshGPSStatus()
+
+                guard self.locationPermissionState.isAuthorized, self.selectedAirport == nil, !self.airports.isEmpty else {
+                    continue
+                }
+
+                self.nearestAirportMatch = await self.container.detectNearestAirportUseCase.execute(airports: self.airports)
+                self.autoSelectAirportIfNeeded()
+            }
+        }
+    }
+
+    private func refreshGPSStatus() {
+        switch locationPermissionState {
+        case .authorizedAlways, .authorizedWhenInUse:
+            gpsStatus = currentLocation == nil ? .limited : .active
+        case .denied, .restricted:
+            gpsStatus = .unavailable
+        case .notDetermined:
+            gpsStatus = .limited
         }
     }
 }
