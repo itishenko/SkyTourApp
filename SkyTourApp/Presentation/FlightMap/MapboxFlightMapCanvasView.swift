@@ -13,7 +13,6 @@ struct MapboxFlightMapCanvasView: View {
 
     let snapshot: MapRenderSnapshot
 
-    @Environment(\.colorScheme) private var colorScheme
     @State private var viewport: Viewport = .camera(center: Constants.defaultCenter, zoom: 7, bearing: 0, pitch: 0)
 
     var body: some View {
@@ -24,29 +23,33 @@ struct MapboxFlightMapCanvasView: View {
                         id: Constants.routeFeatureID,
                         lineCoordinates: routeCoordinates
                     )
-                    .lineColor("#40DCCE")
-                    .lineBorderColor("#177B71")
+                    .lineColor("#FF7B1C")
+                    .lineBorderColor("#FFF8F1")
                     .lineWidth(7)
                     .lineBorderWidth(2)
                 }
+                .lineDashArray([1.35, 1.05])
+                .lineOpacity(0.98)
                 .layerId(Constants.routeLayerID)
                 .lineCap(.round)
                 .slot(.middle)
             }
 
-            ForEvery(snapshot.pointsOfInterest) { point in
+            if let point = highlightedPoint {
                 MapViewAnnotation(coordinate: point.coordinate.clLocationCoordinate2D) {
-                    POIAnnotationBadge(point: point)
+                    HighlightedPOIBadge(point: point)
                 }
                 .allowOverlap(true)
             }
 
-            if snapshot.currentLocation != nil {
-                Puck2D(bearing: .heading)
-                    .showsAccuracyRing(true)
+            if let aircraftCoordinate {
+                MapViewAnnotation(coordinate: aircraftCoordinate) {
+                    AircraftMarker()
+                }
+                .allowOverlap(true)
             }
         }
-        .mapStyle(.standard(lightPreset: colorScheme == .dark ? .dusk : .day))
+        .mapStyle(.standard(lightPreset: .day))
         .onAppear(perform: updateViewport)
         .onChange(of: snapshot) { _, _ in
             updateViewport()
@@ -60,6 +63,16 @@ struct MapboxFlightMapCanvasView: View {
 
     private var routeCoordinates: [CLLocationCoordinate2D] {
         snapshot.routeCoordinates.map(\.clLocationCoordinate2D)
+    }
+
+    private var highlightedPoint: MapPOISnapshot? {
+        snapshot.pointsOfInterest.first(where: \.isActive) ?? snapshot.pointsOfInterest.first
+    }
+
+    private var aircraftCoordinate: CLLocationCoordinate2D? {
+        snapshot.currentLocation?.clLocationCoordinate2D
+            ?? snapshot.routeCoordinates.first?.clLocationCoordinate2D
+            ?? snapshot.focusCoordinate?.clLocationCoordinate2D
     }
 
     private func updateViewport() {
@@ -82,30 +95,57 @@ struct MapboxFlightMapCanvasView: View {
     }
 }
 
-private struct POIAnnotationBadge: View {
+private struct HighlightedPOIBadge: View {
     let point: MapPOISnapshot
 
     var body: some View {
-        VStack(spacing: 6) {
+        HStack(spacing: 10) {
             Circle()
-                .fill(point.isActive ? SkyTourTheme.accent : SkyTourTheme.warning)
-                .frame(width: point.isActive ? 18 : 14, height: point.isActive ? 18 : 14)
+                .fill(.white)
+                .frame(width: 36, height: 36)
                 .overlay(
                     Circle()
-                        .stroke(Color.black.opacity(0.22), lineWidth: 1)
+                        .fill(Color(red: 1.0, green: 0.49, blue: 0.12))
+                        .frame(width: 28, height: 28)
+                        .overlay(
+                            Image(systemName: point.isActive ? "star.fill" : "circle.fill")
+                                .font(.system(size: 13, weight: .bold))
+                                .foregroundStyle(.white)
+                        )
                 )
 
             Text(point.title)
-                .font(.caption2.weight(.semibold))
-                .foregroundStyle(SkyTourTheme.textPrimary)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(
-                    Capsule()
-                        .fill(SkyTourTheme.card.opacity(0.92))
-                )
+                .font(.system(size: 17, weight: .semibold))
+                .foregroundStyle(.black.opacity(0.78))
+                .lineLimit(1)
         }
+        .padding(.leading, 6)
+        .padding(.trailing, 16)
+        .padding(.vertical, 6)
+        .background(
+            Capsule()
+                .fill(Color.white.opacity(0.96))
+        )
         .shadow(color: .black.opacity(0.22), radius: 12, y: 8)
+    }
+}
+
+private struct AircraftMarker: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(Color(red: 1.0, green: 0.62, blue: 0.43).opacity(0.28))
+                .frame(width: 70, height: 70)
+
+            Circle()
+                .fill(Color(red: 1.0, green: 0.62, blue: 0.43).opacity(0.18))
+                .frame(width: 46, height: 46)
+
+            Image(systemName: "airplane")
+                .font(.system(size: 30, weight: .medium))
+                .foregroundStyle(.black.opacity(0.86))
+                .rotationEffect(.degrees(-20))
+        }
     }
 }
 
