@@ -125,36 +125,42 @@ struct RunPreflightChecklistUseCase {
             installedPackageIDs: installedPackageIDs
         )
 
+        let isRouteDownloaded = availability.status == .readyOffline
+        let hasPointsOfInterest = !(route?.poi.isEmpty ?? true)
+        let hasAudioForRoute = route?.poi.contains { $0.audioAsset != nil } ?? false
+        let isGPSActive = permissionState.isAuthorized && (gpsStatus == .active || gpsStatus == .limited)
+        let isOfflineModeReady = selectedAirport != nil && permissionState.isAuthorized
+
         return [
             PreflightCheckItem(
-                id: "airport",
-                title: "Аэропорт выбран",
-                message: selectedAirport?.name ?? "Выберите поддерживаемый аэропорт перед стартом.",
-                state: selectedAirport == nil ? .failed : .ready
+                id: "routeDownloaded",
+                title: "Маршрут скачан",
+                message: isRouteDownloaded ? "Офлайн-пакет маршрута доступен на устройстве." : "Скачайте офлайн-пакет маршрута перед стартом.",
+                state: isRouteDownloaded ? .ready : .warning
             ),
             PreflightCheckItem(
-                id: "route",
-                title: "Маршрут или свободный полет",
-                message: route?.title ?? "Маршрут не выбран. Можно перейти в свободный полет только при готовом офлайн-пакете.",
-                state: route == nil ? .warning : .ready
+                id: "pointsDownloaded",
+                title: "Точки интереса скачаны",
+                message: isRouteDownloaded && hasPointsOfInterest ? "POI маршрута доступны офлайн." : "Точки маршрута станут доступны после загрузки пакета.",
+                state: isRouteDownloaded && hasPointsOfInterest ? .ready : .warning
             ),
             PreflightCheckItem(
-                id: "package",
-                title: "Офлайн-пакет",
-                message: availability.status.title,
-                state: availability.status == .readyOffline ? .ready : .failed
+                id: "audioAvailable",
+                title: "Аудио доступно",
+                message: isRouteDownloaded && hasAudioForRoute ? "Аудиогид подготовлен для офлайн-воспроизведения." : "Аудио появится после загрузки полного офлайн-пакета.",
+                state: isRouteDownloaded && hasAudioForRoute ? .ready : .warning
             ),
             PreflightCheckItem(
-                id: "map",
-                title: "Оффлайн-карта / fallback",
-                message: availability.mapStatus.title,
-                state: availability.mapStatus == .missing ? .warning : .ready
+                id: "gpsActive",
+                title: "GPS активен",
+                message: isGPSActive ? "Геолокация активна." : "Для старта нужен активный GPS.",
+                state: isGPSActive ? .ready : .warning
             ),
             PreflightCheckItem(
-                id: "gps",
-                title: "GPS и доступ к геолокации",
-                message: "\(gpsStatus.title), разрешение: \(permissionState.rawValue)",
-                state: permissionState.isAuthorized ? .ready : .warning
+                id: "offlineModeReady",
+                title: "Офлайн-режим готов",
+                message: isOfflineModeReady ? "Можно переходить к офлайн-сценарию." : "Разрешите геолокацию и выберите аэропорт для офлайн-режима.",
+                state: isOfflineModeReady ? .ready : .warning
             )
         ]
     }
