@@ -56,13 +56,15 @@ struct FlightMapView: View {
                             }
                         }
 
-                        VStack(alignment: .leading, spacing: 14) {
+                        VStack(alignment: .leading, spacing: 10) {
                             FlightStatusPill(title: flightStatusTitle)
-
+                                
                             Button(action: switchToFreeFlight) {
                                 FlightActionPill(title: "Свободный полёт")
                             }
                             .buttonStyle(.plain)
+                            .padding(.top, 10)
+                            
 
                             Button(action: changeRoute) {
                                 FlightActionPill(title: "Сменить маршрут")
@@ -70,7 +72,7 @@ struct FlightMapView: View {
                             .buttonStyle(.plain)
                         }
                         .padding(.top, 16)
-                        .padding(.leading, 22)
+                        .padding(.leading, 16)
 
                         HStack {
                             Spacer()
@@ -81,10 +83,10 @@ struct FlightMapView: View {
                                     Circle()
                                         .stroke(Color.black.opacity(0.36), lineWidth: 2)
                                     Image(systemName: "xmark")
-                                        .font(.system(size: 22, weight: .medium))
+                                        .font(.system(size: 14, weight: .medium))
                                         .foregroundStyle(Color.white.opacity(0.75))
                                 }
-                                .frame(width: 70, height: 70)
+                                .frame(width: 40, height: 40)
                                 .shadow(color: .black.opacity(0.2), radius: 14, y: 8)
                             }
                             .buttonStyle(.plain)
@@ -107,7 +109,7 @@ struct FlightMapView: View {
                                     endPoint: .bottomTrailing
                                 )
                             )
-                            .frame(width: 96, height: 96)
+                            .frame(width: 56, height: 56)
                             .overlay(
                                 Circle()
                                     .stroke(Color.white.opacity(0.08), lineWidth: 1)
@@ -121,12 +123,12 @@ struct FlightMapView: View {
                                 .lineLimit(1)
 
                             Text(poi.title)
-                                .font(.system(size: 22, weight: .semibold, design: .serif))
+                                .font(.system(size: 16, weight: .semibold, design: .serif))
                                 .foregroundStyle(SkyTourTheme.textPrimary)
                                 .lineLimit(1)
 
                             Text(poiSecondaryLine(for: poi))
-                                .font(.system(size: 16, weight: .medium))
+                                .font(.system(size: 12, weight: .medium))
                                 .foregroundStyle(SkyTourTheme.textSecondary)
                                 .lineLimit(1)
                         }
@@ -138,10 +140,10 @@ struct FlightMapView: View {
                         } label: {
                             Circle()
                                 .fill(Color(red: 0.49, green: 0.99, blue: 0.40))
-                                .frame(width: 68, height: 68)
+                                .frame(width: 38, height: 38)
                                 .overlay(
                                     Image(systemName: "chevron.right")
-                                        .font(.system(size: 26, weight: .bold))
+                                        .font(.system(size: 16, weight: .bold))
                                         .foregroundStyle(.black.opacity(0.86))
                                 )
                         }
@@ -248,15 +250,15 @@ private struct FlightStatusPill: View {
         HStack(spacing: 12) {
             Circle()
                 .fill(Color(red: 0.49, green: 0.99, blue: 0.40))
-                .frame(width: 20, height: 20)
+                .frame(width: 15, height: 15)
                 .shadow(color: Color(red: 0.49, green: 0.99, blue: 0.40).opacity(0.5), radius: 10)
 
             Text(title)
-                .font(.system(size: 18, weight: .semibold))
+                .font(.system(size: 12, weight: .semibold))
                 .foregroundStyle(Color.white.opacity(0.78))
         }
-        .padding(.horizontal, 24)
-        .padding(.vertical, 16)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
         .background(
             Capsule(style: .continuous)
                 .fill(Color(red: 0.35, green: 0.37, blue: 0.35).opacity(0.96))
@@ -274,10 +276,10 @@ private struct FlightActionPill: View {
 
     var body: some View {
         Text(title)
-            .font(.system(size: 16, weight: .semibold))
+            .font(.system(size: 12, weight: .semibold))
             .foregroundStyle(Color.white.opacity(0.68))
-            .padding(.horizontal, 26)
-            .padding(.vertical, 15)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
             .background(
                 Capsule(style: .continuous)
                     .fill(Color(red: 0.35, green: 0.37, blue: 0.35).opacity(0.96))
