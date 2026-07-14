@@ -23,6 +23,7 @@ protocol LocationService {
 protocol MapService {
     func renderSnapshot(
         route: Route?,
+        availablePOI: [POI],
         activePOI: POI?,
         currentLocation: CoordinatePoint?,
         gpsStatus: GPSStatus

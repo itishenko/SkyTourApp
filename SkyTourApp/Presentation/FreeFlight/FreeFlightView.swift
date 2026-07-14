@@ -12,15 +12,15 @@ struct FreeFlightView: View {
         SkyTourScaffold(title: "Свободный полет", subtitle: "Точки рядом") {
             if availablePOI.isEmpty {
                 EmptyStateCard(
-                    title: "Нет скачанных точек",
-                    message: "Сначала скачайте хотя бы один route pack для выбранного аэропорта."
+                    title: "Нет доступных точек",
+                    message: "Для свободного полета пока нет POI в доступных маршрутах."
                 )
             } else {
                 SkyTourCard(accentGlow: true) {
                     Text("Доступно \(availablePOI.count) POI для свободного полета.")
                         .font(.headline)
                         .foregroundStyle(SkyTourTheme.textPrimary)
-                    Text("Сценарий не зависит от выбранного маршрута и использует уже загруженные пакеты.")
+                    Text("Свободный полет показывает точки сразу со всех маршрутов и подсказывает ближайшую внизу карты.")
                         .foregroundStyle(SkyTourTheme.textSecondary)
                 }
 

@@ -19,27 +19,21 @@ struct MapboxMapService: MapService {
 
     func renderSnapshot(
         route: Route?,
+        availablePOI: [POI],
         activePOI: POI?,
         currentLocation: CoordinatePoint?,
         gpsStatus: GPSStatus
     ) -> MapRenderSnapshot {
-        let pointsOfInterest = route?.poi.map { poi in
+        let sourcePOI = route?.poi ?? availablePOI
+
+        let pointsOfInterest = sourcePOI.map { poi in
             MapPOISnapshot(
                 id: poi.id,
                 title: poi.title,
                 coordinate: poi.coordinate,
                 isActive: poi.id == activePOI?.id
             )
-        } ?? activePOI.map {
-            [
-                MapPOISnapshot(
-                    id: $0.id,
-                    title: $0.title,
-                    coordinate: $0.coordinate,
-                    isActive: true
-                )
-            ]
-        } ?? []
+        }
 
         let isConfigured = accessToken != nil
         let warningMessage = warningMessage(

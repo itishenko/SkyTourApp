@@ -1,3 +1,4 @@
+import CoreLocation
 import Foundation
 import SwiftUI
 
@@ -212,9 +213,10 @@ final class AppState: ObservableObject {
     }
 
     func availablePOIForFreeFlight() -> [POI] {
-        routes
-            .filter { installedPackageIDs.contains($0.packageID) }
+        var seenPOIIDs = Set<String>()
+        return routes
             .flatMap(\.poi)
+            .filter { seenPOIIDs.insert($0.id).inserted }
     }
 
     func download(_ package: RoutePackage) async {
@@ -261,11 +263,13 @@ final class AppState: ObservableObject {
         )
         activeFlightSession = session
         let availablePOI = route?.poi ?? availablePOIForFreeFlight()
-        let poi = container.detectActivePOIUseCase.execute(
-            session: session,
-            route: route,
-            availablePOI: availablePOI
-        )
+        let poi = mode == .freeFlight
+            ? nearestPOI(in: availablePOI, to: currentLocation) ?? availablePOI.first
+            : container.detectActivePOIUseCase.execute(
+                session: session,
+                route: route,
+                availablePOI: availablePOI
+            )
         activePOI = poi
         if autoplayAudio, let poi {
             await container.audioGuideService.play(poi)
@@ -289,8 +293,10 @@ final class AppState: ObservableObject {
     }
 
     func mapSnapshot(for route: Route?) -> MapRenderSnapshot {
-        container.mapService.renderSnapshot(
+        let availablePOI = route?.poi ?? availablePOIForFreeFlight()
+        return container.mapService.renderSnapshot(
             route: route,
+            availablePOI: availablePOI,
             activePOI: activePOI,
             currentLocation: currentLocation,
             gpsStatus: gpsStatus
@@ -349,6 +355,7 @@ final class AppState: ObservableObject {
 
                 self.currentLocation = location
                 self.refreshGPSStatus()
+                self.refreshActivePOIForCurrentFlight()
 
                 guard self.locationPermissionState.isAuthorized, self.selectedAirport == nil, !self.airports.isEmpty else {
                     continue
@@ -368,6 +375,25 @@ final class AppState: ObservableObject {
             gpsStatus = .unavailable
         case .notDetermined:
             gpsStatus = .limited
+        }
+    }
+
+    private func refreshActivePOIForCurrentFlight() {
+        guard let session = activeFlightSession, session.mode == .freeFlight else { return }
+
+        let availablePOI = availablePOIForFreeFlight()
+        let nearest = nearestPOI(in: availablePOI, to: currentLocation) ?? availablePOI.first
+        activePOI = nearest
+    }
+
+    private func nearestPOI(in points: [POI], to location: CoordinatePoint?) -> POI? {
+        guard let location else { return nil }
+
+        let current = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        return points.min { lhs, rhs in
+            let lhsLocation = CLLocation(latitude: lhs.coordinate.latitude, longitude: lhs.coordinate.longitude)
+            let rhsLocation = CLLocation(latitude: rhs.coordinate.latitude, longitude: rhs.coordinate.longitude)
+            return current.distance(from: lhsLocation) < current.distance(from: rhsLocation)
         }
     }
 }

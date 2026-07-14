@@ -35,13 +35,11 @@ struct MapboxFlightMapCanvasView: View {
                 .slot(.middle)
             }
 
-            if let point = highlightedPoint {
+            ForEvery(snapshot.pointsOfInterest) { point in
                 MapViewAnnotation(coordinate: point.coordinate.clLocationCoordinate2D) {
-                    HighlightedPOIBadge(point: point)
+                    POIBadge(point: point)
                 }
                 .allowOverlap(true)
-            } else {
-                let _ = print("highlightedPoint nil")
             }
 
             if let aircraftCoordinate {
@@ -49,8 +47,6 @@ struct MapboxFlightMapCanvasView: View {
                     AircraftMarker()
                 }
                 .allowOverlap(true)
-            } else {
-                let _ = print("aircraftCoordinate nil")
             }
         }
         .mapStyle(.standard(lightPreset: .day))
@@ -67,10 +63,6 @@ struct MapboxFlightMapCanvasView: View {
 
     private var routeCoordinates: [CLLocationCoordinate2D] {
         snapshot.routeCoordinates.map(\.clLocationCoordinate2D)
-    }
-
-    private var highlightedPoint: MapPOISnapshot? {
-        snapshot.pointsOfInterest.first(where: \.isActive) ?? snapshot.pointsOfInterest.first
     }
 
     private var aircraftCoordinate: CLLocationCoordinate2D? {
@@ -99,32 +91,34 @@ struct MapboxFlightMapCanvasView: View {
     }
 }
 
-private struct HighlightedPOIBadge: View {
+private struct POIBadge: View {
     let point: MapPOISnapshot
 
     var body: some View {
         HStack(spacing: 10) {
             Circle()
                 .fill(.white)
-                .frame(width: 36, height: 36)
+                .frame(width: 32, height: 32)
                 .overlay(
                     Circle()
-                        .fill(Color(red: 1.0, green: 0.49, blue: 0.12))
-                        .frame(width: 28, height: 28)
-                        .overlay(
-                            Image(systemName: point.isActive ? "star.fill" : "circle.fill")
-                                .font(.system(size: 13, weight: .bold))
-                                .foregroundStyle(.white)
-                        )
+                        .fill(point.isActive ? Color(red: 1.0, green: 0.49, blue: 0.12) : Color(red: 0.05, green: 0.10, blue: 0.18))
+                        .frame(width: point.isActive ? 24 : 22, height: point.isActive ? 24 : 22)
+                        .overlay {
+                            if point.isActive {
+                                Image(systemName: "star.fill")
+                                    .font(.system(size: 11, weight: .bold))
+                                    .foregroundStyle(.white)
+                            }
+                        }
                 )
 
             Text(point.title)
-                .font(.system(size: 17, weight: .semibold))
+                .font(.system(size: 16, weight: .semibold))
                 .foregroundStyle(.black.opacity(0.78))
                 .lineLimit(1)
         }
         .padding(.leading, 6)
-        .padding(.trailing, 16)
+        .padding(.trailing, 14)
         .padding(.vertical, 6)
         .background(
             Capsule()
