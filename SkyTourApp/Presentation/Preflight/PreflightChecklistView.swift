@@ -17,30 +17,24 @@ struct PreflightChecklistView: View {
     ]
 
     var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .bottom) {
-                background
+        ZStack {
+            background
 
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 20) {
-                        header
-                        checklistCard
-                        warningCard
-                        primaryButton
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 6)
-                    .padding(.bottom, 228)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 20) {
+                    header
+                    checklistCard
+                    warningCard
+                    primaryButton
                 }
-            }
-            .safeAreaInset(edge: .bottom) {
-                bottomNavigation(safeAreaBottomInset: geometry.safeAreaInsets.bottom)
+                .padding(.horizontal, 20)
+                .padding(.top, 6)
+                .padding(.bottom, 56)
             }
         }
         .preferredColorScheme(.dark)
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
-        .toolbar(.hidden, for: .tabBar)
         .task(id: route?.id) {
             checks = await appState.makePreflightChecklist(for: route)
         }
@@ -182,71 +176,6 @@ struct PreflightChecklistView: View {
         .buttonStyle(.plain)
     }
 
-    private func bottomNavigation(safeAreaBottomInset: CGFloat) -> some View {
-        HStack(spacing: 16) {
-            TabIconButton(symbol: "house", action: openHome)
-
-            Button(action: openRoutes) {
-                HStack(spacing: 12) {
-                    Image(systemName: "point.3.connected.trianglepath.dotted")
-                        .font(.system(size: 22, weight: .semibold))
-                    Text("Маршруты")
-                        .font(.system(size: 17, weight: .bold))
-                        .lineLimit(1)
-                }
-                .foregroundStyle(Color.black.opacity(0.86))
-                .padding(.horizontal, 26)
-                .frame(height: 72)
-                .background(
-                    Capsule(style: .continuous)
-                        .fill(
-                            LinearGradient(
-                                colors: [
-                                    Color(red: 0.49, green: 0.99, blue: 0.40),
-                                    Color(red: 0.37, green: 0.97, blue: 0.29)
-                                ],
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
-                )
-                .shadow(color: Color(red: 0.49, green: 0.99, blue: 0.40).opacity(0.26), radius: 18, y: 8)
-            }
-            .buttonStyle(.plain)
-
-            TabIconButton(symbol: "arrow.down.to.line", action: openOffline)
-            TabIconButton(symbol: "gearshape", action: openSettings)
-        }
-        .padding(.horizontal, 18)
-        .padding(.top, 12)
-        .padding(.bottom, max(safeAreaBottomInset, 12))
-        .background(
-            ZStack {
-                RoundedRectangle(cornerRadius: 34, style: .continuous)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(red: 0.12, green: 0.16, blue: 0.16).opacity(0.96),
-                                Color(red: 0.10, green: 0.14, blue: 0.14).opacity(0.98)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-
-                RoundedRectangle(cornerRadius: 34, style: .continuous)
-                    .fill(Color.white.opacity(0.03))
-            }
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 34, style: .continuous)
-                .stroke(Color.white.opacity(0.08), lineWidth: 1)
-        )
-        .padding(.horizontal, 20)
-        .padding(.bottom, 8)
-        .background(Color.clear)
-    }
-
     private var visibleChecks: [PreflightCheckItem] {
         checks.isEmpty ? Self.placeholderChecks : checks
     }
@@ -298,25 +227,10 @@ struct PreflightChecklistView: View {
         openRoutes()
     }
 
-    private func openHome() {
-        router.selectedTab = .home
-        router.popToRoot()
-    }
-
     private func openRoutes() {
         router.selectedTab = .home
         router.popToRoot()
         router.push(.routes)
-    }
-
-    private func openOffline() {
-        router.selectedTab = .offline
-        router.popToRoot()
-    }
-
-    private func openSettings() {
-        router.selectedTab = .settings
-        router.popToRoot()
     }
 }
 
@@ -345,21 +259,5 @@ private struct ChecklistRow: View {
                 .foregroundStyle(isReady ? Color.white.opacity(0.92) : Color.white.opacity(0.56))
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
-    }
-}
-
-private struct TabIconButton: View {
-    let symbol: String
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            Image(systemName: symbol)
-                .font(.system(size: 31, weight: .regular))
-                .foregroundStyle(Color.white.opacity(0.42))
-                .frame(maxWidth: .infinity)
-                .frame(height: 72)
-        }
-        .buttonStyle(.plain)
     }
 }
