@@ -6,7 +6,7 @@ import UIKit
 
 struct MapboxFlightMapCanvasView: View {
     private enum Constants {
-        static let defaultCenter = CLLocationCoordinate2D(latitude: 47.0105, longitude: 28.8638)
+        static let defaultCenter = CLLocationCoordinate2D(latitude: 47.0105, longitude: 28.8638) // FIXME
         static let routeLayerID = "flight-route-layer"
         static let routeFeatureID = "flight-route-feature"
     }
@@ -40,6 +40,8 @@ struct MapboxFlightMapCanvasView: View {
                     HighlightedPOIBadge(point: point)
                 }
                 .allowOverlap(true)
+            } else {
+                let _ = print("highlightedPoint nil")
             }
 
             if let aircraftCoordinate {
@@ -47,6 +49,8 @@ struct MapboxFlightMapCanvasView: View {
                     AircraftMarker()
                 }
                 .allowOverlap(true)
+            } else {
+                let _ = print("aircraftCoordinate nil")
             }
         }
         .mapStyle(.standard(lightPreset: .day))

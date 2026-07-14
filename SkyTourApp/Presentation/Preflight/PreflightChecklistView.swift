@@ -182,7 +182,7 @@ struct PreflightChecklistView: View {
 
     private var primaryActionTitle: String {
         if route == nil {
-            return isChecklistReady ? "Начать свободный полёт" : "Нужен активный GPS"
+            return "Начать свободный полёт"  //isChecklistReady ? "Начать свободный полёт" : "Нужен активный GPS"
         }
 
         if !isRouteDownloaded {
@@ -193,11 +193,17 @@ struct PreflightChecklistView: View {
     }
 
     private var isChecklistReady: Bool {
-        checkState(for: "routeDownloaded") == .ready &&
-        checkState(for: "pointsDownloaded") == .ready &&
-        checkState(for: "audioAvailable") == .ready &&
-        checkState(for: "gpsActive") == .ready &&
-        checkState(for: "offlineModeReady") == .ready
+        if route == nil {
+            return checkState(for: "routeDownloaded") == .ready &&
+            checkState(for: "gpsActive") == .ready &&
+            checkState(for: "offlineModeReady") == .ready
+        } else {
+            return checkState(for: "routeDownloaded") == .ready &&
+            checkState(for: "pointsDownloaded") == .ready &&
+            checkState(for: "audioAvailable") == .ready &&
+            checkState(for: "gpsActive") == .ready &&
+            checkState(for: "offlineModeReady") == .ready
+        }
     }
 
     private var isRouteDownloaded: Bool {

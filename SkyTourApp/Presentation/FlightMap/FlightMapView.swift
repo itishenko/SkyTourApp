@@ -26,73 +26,59 @@ struct FlightMapView: View {
                 )
                 .ignoresSafeArea()
 
-                VStack(spacing: 0) {
-                    Rectangle()
-                        .fill(
-                            LinearGradient(
-                                colors: [
-                                    Color(red: 0.03, green: 0.08, blue: 0.07),
-                                    Color(red: 0.04, green: 0.08, blue: 0.07)
-                                ],
-                                startPoint: .top,
-                                endPoint: .bottom
+                ZStack(alignment: .topLeading) {
+                    if snapshot.isMapConfigured {
+                        MapboxFlightMapCanvasView(snapshot: snapshot)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .ignoresSafeArea()
+                    } else {
+                        ZStack {
+                            Color(red: 0.90, green: 0.90, blue: 0.88)
+                            PlaceholderIllustrationCard(
+                                title: "Mapbox не настроен",
+                                subtitle: snapshot.warningMessage ?? "Добавьте публичный токен Mapbox, чтобы экран выглядел как в макете.",
+                                symbol: "map.fill"
                             )
-                        )
-                        .frame(height: geometry.safeAreaInsets.top + 118)
-
-                    ZStack(alignment: .topLeading) {
-                        if snapshot.isMapConfigured {
-                            MapboxFlightMapCanvasView(snapshot: snapshot)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        } else {
-                            ZStack {
-                                Color(red: 0.90, green: 0.90, blue: 0.88)
-                                PlaceholderIllustrationCard(
-                                    title: "Mapbox не настроен",
-                                    subtitle: snapshot.warningMessage ?? "Добавьте публичный токен Mapbox, чтобы экран выглядел как в макете.",
-                                    symbol: "map.fill"
-                                )
-                                .padding(24)
-                            }
+                            .padding(24)
                         }
+                        .ignoresSafeArea()
+                    }
 
-                        VStack(alignment: .leading, spacing: 10) {
-                            FlightStatusPill(title: flightStatusTitle)
-                                
+                    VStack(alignment: .leading, spacing: 10) {
+                        FlightStatusPill(title: flightStatusTitle)
+
+                        if route != nil {
                             Button(action: switchToFreeFlight) {
                                 FlightActionPill(title: "Свободный полёт")
                             }
                             .buttonStyle(.plain)
                             .padding(.top, 10)
-                            
 
                             Button(action: changeRoute) {
                                 FlightActionPill(title: "Сменить маршрут")
                             }
                             .buttonStyle(.plain)
                         }
-                        .padding(.top, 16)
-                        .padding(.leading, 16)
+                    }
+                    .padding(.leading, 16)
 
-                        HStack {
-                            Spacer()
-                            Button(action: closeFlight) {
-                                ZStack {
-                                    Circle()
-                                        .fill(Color.black.opacity(0.58))
-                                    Circle()
-                                        .stroke(Color.black.opacity(0.36), lineWidth: 2)
-                                    Image(systemName: "xmark")
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundStyle(Color.white.opacity(0.75))
-                                }
-                                .frame(width: 40, height: 40)
-                                .shadow(color: .black.opacity(0.2), radius: 14, y: 8)
+                    HStack {
+                        Spacer()
+                        Button(action: closeFlight) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.black.opacity(0.58))
+                                Circle()
+                                    .stroke(Color.black.opacity(0.36), lineWidth: 2)
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundStyle(Color.white.opacity(0.75))
                             }
-                            .buttonStyle(.plain)
-                            .padding(.top, 10)
-                            .padding(.trailing, 22)
+                            .frame(width: 40, height: 40)
+                            .shadow(color: .black.opacity(0.2), radius: 14, y: 8)
                         }
+                        .buttonStyle(.plain)
+                        .padding(.trailing, 22)
                     }
                 }
 
@@ -175,7 +161,6 @@ struct FlightMapView: View {
                 }
             }
         }
-        .ignoresSafeArea()
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
         .toolbar(.hidden, for: .tabBar)
@@ -230,7 +215,10 @@ struct FlightMapView: View {
         Task {
             await appState.stopFlight()
             router.popToRoot()
-            router.push(.preflight(nil))
+            
+            let session = await appState.startFlight(route: nil, mode: .freeFlight)
+            guard session != nil else { return }
+            router.push(.flight(nil))
         }
     }
 
